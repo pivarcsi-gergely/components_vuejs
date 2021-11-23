@@ -9,7 +9,10 @@
 </head>
 <body>
     <div id="components-demo">
-        <button-counter><button-counter/>
+        <button-counter></button-counter>
+        <todo-list v-bind:todosl="todos">
+      </todo-list>
+        <cim szoveg="Le title"></cim>
     </div>
     <script>
         // Define a new component called button-counter
@@ -21,7 +24,33 @@
         },
         template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
         });
-        let app = new Vue({el: '#components-demo'})
+
+        Vue.component('todo-list-item', {
+            props: ['todoi'],
+            template:
+                `<li>{{ todoi }}</li>`,
+        });
+
+        Vue.component('todo-list', {
+            props: ['todosl'],
+            template: 
+                `<ul>
+                    <todo-list-item v-for="todof in todosl" :todoi="todof"></todo-list-item>
+                </ul>`,
+        });
+
+        Vue.component('cim', {
+            props: ['szoveg'],
+            template: 
+                `<h1>{{szoveg}}</h1>`,
+        });
+        
+        let app = new Vue({
+            el: '#components-demo',
+            data: {
+                todos: ['Anya', 'Mama', 'Papa']
+            }
+        });
     </script>
 </body>
 </html>
