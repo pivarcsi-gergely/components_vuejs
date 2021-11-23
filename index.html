@@ -8,8 +8,9 @@
     <title>Document</title>
 </head>
 <body>
-    
-
+    <div id="components-demo">
+        <button-counter><button-counter/>
+    </div>
     <script>
         // Define a new component called button-counter
         Vue.component('button-counter', {
@@ -19,7 +20,8 @@
             }
         },
         template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
-        })
+        });
+        let app = new Vue({el: '#components-demo'})
     </script>
 </body>
 </html>
